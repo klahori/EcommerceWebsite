@@ -102,6 +102,7 @@
   if (shipping == "False") {
     document.getElementById("shipping-info").innerHTML = "";
   }
+
   if (user != "AnonymousUser") {
     document.getElementById("user-info").innerHTML = "";
   }
@@ -152,16 +153,16 @@
     fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "applicaiton/json",
         "X-CSRFToken": csrftoken,
       },
       body: JSON.stringify({ form: userFormData, shipping: shippingInfo }),
     })
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        alert("Tranaction completed");
-        window.location.href = "{% url 'store'%}";
+        alert("Transaction completed");
+        window.location.href = "{% url 'store' %}";
       });
   }
 </script>
