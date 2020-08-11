@@ -113,8 +113,9 @@
   }
 
   var form = document.getElementById("form");
-  //csrftoken = form.getElementsByTagName("input")[0].value;
-  //console.log("Newtoken:", form.getElementsByTagName("input")[0].value);
+
+  csrftoken = form.getElementsByTagName("input")[0].value;
+  console.log("Newtoken:", form.getElementsByTagName("input")[0].value);
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     console.log("Form Submitted...");
@@ -153,6 +154,7 @@
     console.log("Shipping Info:", shippingInfo);
     console.log("User Info:", userFormData);
     var url = "/process_order/";
+
     fetch(url, {
       method: "POST",
       headers: {
@@ -165,8 +167,10 @@
       .then((data) => {
         console.log("Success:", data);
         alert("Transaction completed");
+
         cart = {};
         document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+
         window.location.href = "{% url 'store' %}";
       });
   }
